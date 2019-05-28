@@ -1,9 +1,11 @@
 /* --------------------
  * @overlook/load-routes
- * Tests utilities
+ * Tests set-up
  * ------------------*/
 
 'use strict';
+
+// Init
 
 /*
  * Throw any unhandled promise rejections.

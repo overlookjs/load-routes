@@ -37,7 +37,7 @@ describe('groupPaths()', () => {
 			['with no extension', '/a', 'a', ''],
 			['with no basename', '/.js', '', 'js'],
 			["including '.'", '/a.a/b.js', 'a.a/b', 'js'],
-			["including '.' and path ends with '.", '/a.a/b.', 'a.a/b', ''],
+			["including '.' and path ends with '.'", '/a.a/b.', 'a.a/b', ''],
 			["including '.' and path has no extension", '/a.a/b', 'a.a/b', ''],
 			["with '/index' on end of path", '/a/index.js', 'a', 'js']
 		])('%s', (_, path, pathOut, ext) => {

@@ -7,7 +7,7 @@
 'use strict';
 
 // Imports
-const {pathName, pathJoinRoute} = require('../../lib/paths');
+const {pathName, pathParent, pathJoinRoute} = require('../../lib/paths');
 
 // Init
 require('../support');
@@ -23,6 +23,17 @@ describe('paths functions', () => {
 			['/abc/def/ghi', 'ghi']
 		])('%j => %j', (path, name) => {
 			expect(pathName(path)).toBe(name);
+		});
+	});
+
+	describe('`pathParent()` transforms', () => {
+		it.each([
+			// TODO Test for when starting path is '/'
+			['/abc', '/'],
+			['/abc/def', '/abc'],
+			['/abc/def/ghi', '/abc/def']
+		])('%j => %j', (path, res) => {
+			expect(pathParent(path)).toBe(res);
 		});
 	});
 

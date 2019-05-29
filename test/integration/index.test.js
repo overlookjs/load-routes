@@ -64,8 +64,7 @@ describe('loads from folder', () => {
 			for (const props of [
 				{name: '.', path: 'dot'},
 				{name: './', path: 'dotSlash'},
-				{name: './index', path: 'dotSlashIndex'},
-				{name: 'index', path: 'index'}
+				{name: './index', path: 'dotSlashIndex'}
 			]) {
 				describe(`'${props.name}'`, () => {
 					const fixturePath = makeFixturePathFn('children', 'parentDefined', props.path);

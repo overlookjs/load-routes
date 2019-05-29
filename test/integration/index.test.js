@@ -51,7 +51,7 @@ describe('loads from folder', () => {
 		});
 
 		it('route[LOAD_PATH] is load path', () => {
-			expect(router[LOAD_PATH]).toBe('');
+			expect(router[LOAD_PATH]).toBe('/');
 		});
 
 		it('route[FILE_PATH] is file path', () => {
@@ -96,7 +96,7 @@ describe('loads from folder', () => {
 					});
 
 					it('child[LOAD_PATH] is load path', () => {
-						expect(child[LOAD_PATH]).toBe('child');
+						expect(child[LOAD_PATH]).toBe('/child');
 					});
 
 					it('child[FILE_PATH] is file path', () => {
@@ -135,7 +135,7 @@ describe('loads from folder', () => {
 			});
 
 			it('child[LOAD_PATH] is load path', () => {
-				expect(child[LOAD_PATH]).toBe('child');
+				expect(child[LOAD_PATH]).toBe('/child');
 			});
 
 			it('child[FILE_PATH] is file path', () => {
@@ -179,7 +179,7 @@ describe('loads from folder', () => {
 			});
 
 			it('claimed[LOAD_PATH] is load path', () => {
-				expect(claimed[LOAD_PATH]).toBe('claimed');
+				expect(claimed[LOAD_PATH]).toBe('/claimed');
 			});
 
 			it('claimed[FILE_PATH] is file path', () => {

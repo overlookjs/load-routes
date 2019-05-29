@@ -30,45 +30,45 @@ describe('createTree()', () => {
 
 	describe('nests children within parent', () => {
 		it('child to root', () => {
-			const ret = createTree(createGroupsMap(['', 'a']));
+			const ret = createTree(createGroupsMap(['/', '/a']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
-					{path: 'a', children: []}
+					{path: '/a', children: []}
 				]
 			});
 		});
 
 		it('child to root with child first', () => {
-			const ret = createTree(createGroupsMap(['a', '']));
+			const ret = createTree(createGroupsMap(['/a', '/']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
-					{path: 'a', children: []}
+					{path: '/a', children: []}
 				]
 			});
 		});
 
 		it('2 children to root', () => {
-			const ret = createTree(createGroupsMap(['', 'a', 'b']));
+			const ret = createTree(createGroupsMap(['/', '/a', '/b']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
-					{path: 'a', children: []},
-					{path: 'b', children: []}
+					{path: '/a', children: []},
+					{path: '/b', children: []}
 				]
 			});
 		});
 
 		it('child to child', () => {
-			const ret = createTree(createGroupsMap(['', 'a', 'a/b']));
+			const ret = createTree(createGroupsMap(['/', '/a', '/a/b']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						children: [
-							{path: 'a/b', children: []}
+							{path: '/a/b', children: []}
 						]
 					}
 				]
@@ -76,17 +76,17 @@ describe('createTree()', () => {
 		});
 
 		it('child to child to child', () => {
-			const ret = createTree(createGroupsMap(['', 'a', 'a/b', 'a/b/c']));
+			const ret = createTree(createGroupsMap(['/', '/a', '/a/b', '/a/b/c']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						children: [
 							{
-								path: 'a/b',
+								path: '/a/b',
 								children: [
-									{path: 'a/b/c', children: []}
+									{path: '/a/b/c', children: []}
 								]
 							}
 						]
@@ -98,26 +98,26 @@ describe('createTree()', () => {
 
 	describe('creates missing nodes', () => {
 		it('root missing', () => {
-			const ret = createTree(createGroupsMap(['a']));
+			const ret = createTree(createGroupsMap(['/a']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				files: {},
 				children: [
-					{path: 'a', children: []}
+					{path: '/a', children: []}
 				]
 			});
 		});
 
 		it('child missing', () => {
-			const ret = createTree(createGroupsMap(['', 'a/b']));
+			const ret = createTree(createGroupsMap(['/', '/a/b']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						files: {},
 						children: [
-							{path: 'a/b', children: []}
+							{path: '/a/b', children: []}
 						]
 					}
 				]
@@ -125,16 +125,16 @@ describe('createTree()', () => {
 		});
 
 		it('root and child missing', () => {
-			const ret = createTree(createGroupsMap(['a/b']));
+			const ret = createTree(createGroupsMap(['/a/b']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				files: {},
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						files: {},
 						children: [
-							{path: 'a/b', children: []}
+							{path: '/a/b', children: []}
 						]
 					}
 				]
@@ -142,19 +142,19 @@ describe('createTree()', () => {
 		});
 
 		it('2 children missing', () => {
-			const ret = createTree(createGroupsMap(['', 'a/b/c']));
+			const ret = createTree(createGroupsMap(['/', '/a/b/c']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						files: {},
 						children: [
 							{
-								path: 'a/b',
+								path: '/a/b',
 								files: {},
 								children: [
-									{path: 'a/b/c', children: []}
+									{path: '/a/b/c', children: []}
 								]
 							}
 						]
@@ -164,20 +164,20 @@ describe('createTree()', () => {
 		});
 
 		it('root and 2 children missing', () => {
-			const ret = createTree(createGroupsMap(['a/b/c']));
+			const ret = createTree(createGroupsMap(['/a/b/c']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				files: {},
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						files: {},
 						children: [
 							{
-								path: 'a/b',
+								path: '/a/b',
 								files: {},
 								children: [
-									{path: 'a/b/c', children: []}
+									{path: '/a/b/c', children: []}
 								]
 							}
 						]
@@ -189,31 +189,31 @@ describe('createTree()', () => {
 
 	describe('orders children', () => {
 		it('root level', () => {
-			const ret = createTree(createGroupsMap(['', 'b', 'a']));
+			const ret = createTree(createGroupsMap(['/', '/b', '/a']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
-					{path: 'a', children: []},
-					{path: 'b', children: []}
+					{path: '/a', children: []},
+					{path: '/b', children: []}
 				]
 			});
 		});
 
 		it('root level with 2nd level children', () => {
-			const ret = createTree(createGroupsMap(['', 'b', 'a', 'b/x', 'a/x']));
+			const ret = createTree(createGroupsMap(['/', '/b', '/a', '/b/x', '/a/x']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						children: [
-							{path: 'a/x', children: []}
+							{path: '/a/x', children: []}
 						]
 					},
 					{
-						path: 'b',
+						path: '/b',
 						children: [
-							{path: 'b/x', children: []}
+							{path: '/b/x', children: []}
 						]
 					}
 				]
@@ -221,15 +221,15 @@ describe('createTree()', () => {
 		});
 
 		it('2nd level', () => {
-			const ret = createTree(createGroupsMap(['', 'a/c', 'a/b', 'a']));
+			const ret = createTree(createGroupsMap(['/', '/a/c', '/a/b', '/a']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						children: [
-							{path: 'a/b', children: []},
-							{path: 'a/c', children: []}
+							{path: '/a/b', children: []},
+							{path: '/a/c', children: []}
 						]
 					}
 				]
@@ -237,23 +237,23 @@ describe('createTree()', () => {
 		});
 
 		it('2nd level with 3rd level children', () => {
-			const ret = createTree(createGroupsMap(['', 'a/c', 'a/b', 'a', 'a/c/x', 'a/b/x']));
+			const ret = createTree(createGroupsMap(['/', '/a/c', '/a/b', '/a', '/a/c/x', '/a/b/x']));
 			expect(ret).toEqual({
-				path: '',
+				path: '/',
 				children: [
 					{
-						path: 'a',
+						path: '/a',
 						children: [
 							{
-								path: 'a/b',
+								path: '/a/b',
 								children: [
-									{path: 'a/b/x', children: []}
+									{path: '/a/b/x', children: []}
 								]
 							},
 							{
-								path: 'a/c',
+								path: '/a/c',
 								children: [
-									{path: 'a/c/x', children: []}
+									{path: '/a/c/x', children: []}
 								]
 							}
 						]

@@ -53,18 +53,24 @@ describe('paths functions', () => {
 				['/a/b', './', '/a'],
 				['/a', './index', '/'],
 				['/a/b', './index', '/a'],
+				['/a', './index/', '/'],
+				['/a/b', './index/', '/a'],
 				['/a', './x', '/x'],
 				['/a/b', './x', '/a/x'],
 				['/a', './x/', '/x'],
 				['/a/b', './x/', '/a/x'],
 				['/a', './x/index', '/x'],
 				['/a/b', './x/index', '/a/x'],
+				['/a', './x/index/', '/x'],
+				['/a/b', './x/index/', '/a/x'],
 				['/a', './x/y', '/x/y'],
 				['/a/b', './x/y', '/a/x/y'],
 				['/a', './x/y/', '/x/y'],
 				['/a/b', './x/y/', '/a/x/y'],
 				['/a', './x/y/index', '/x/y'],
-				['/a/b', './x/y/index', '/a/x/y']
+				['/a/b', './x/y/index', '/a/x/y'],
+				['/a', './x/y/index/', '/x/y'],
+				['/a/b', './x/y/index/', '/a/x/y']
 			]);
 		});
 
@@ -77,18 +83,24 @@ describe('paths functions', () => {
 				['/a/b/c', '../', '/a'],
 				['/a/b', '../index', '/'],
 				['/a/b/c', '../index', '/a'],
+				['/a/b', '../index/', '/'],
+				['/a/b/c', '../index/', '/a'],
 				['/a/b', '../x', '/x'],
 				['/a/b/c', '../x', '/a/x'],
 				['/a/b', '../x/', '/x'],
 				['/a/b/c', '../x/', '/a/x'],
 				['/a/b', '../x/index', '/x'],
 				['/a/b/c', '../x/index', '/a/x'],
+				['/a/b', '../x/index/', '/x'],
+				['/a/b/c', '../x/index/', '/a/x'],
 				['/a/b', '../x/y', '/x/y'],
 				['/a/b/c', '../x/y', '/a/x/y'],
 				['/a/b', '../x/y/', '/x/y'],
 				['/a/b/c', '../x/y/', '/a/x/y'],
 				['/a/b', '../x/y/index', '/x/y'],
-				['/a/b/c', '../x/y/index', '/a/x/y']
+				['/a/b/c', '../x/y/index', '/a/x/y'],
+				['/a/b', '../x/y/index/', '/x/y'],
+				['/a/b/c', '../x/y/index/', '/a/x/y']
 			]);
 		});
 
@@ -100,6 +112,9 @@ describe('paths functions', () => {
 				['/', 'index', '/'],
 				['/a', 'index', '/a'],
 				['/a/b', 'index', '/a/b'],
+				['/', 'index/', '/'],
+				['/a', 'index/', '/a'],
+				['/a/b', 'index/', '/a/b'],
 				['/', 'x', '/x'],
 				['/a', 'x', '/a/x'],
 				['/a/b', 'x', '/a/b/x'],
@@ -109,6 +124,9 @@ describe('paths functions', () => {
 				['/', 'x/index', '/x'],
 				['/a', 'x/index', '/a/x'],
 				['/a/b', 'x/index', '/a/b/x'],
+				['/', 'x/index/', '/x'],
+				['/a', 'x/index/', '/a/x'],
+				['/a/b', 'x/index/', '/a/b/x'],
 				['/', 'x/y', '/x/y'],
 				['/a', 'x/y', '/a/x/y'],
 				['/a/b', 'x/y', '/a/b/x/y'],
@@ -118,6 +136,9 @@ describe('paths functions', () => {
 				['/', 'x/y/index', '/x/y'],
 				['/a', 'x/y/index', '/a/x/y'],
 				['/a/b', 'x/y/index', '/a/b/x/y'],
+				['/', 'x/y/index/', '/x/y'],
+				['/a', 'x/y/index/', '/a/x/y'],
+				['/a/b', 'x/y/index/', '/a/b/x/y'],
 				['/', '.x', '/.x'],
 				['/a', '.x', '/a/.x'],
 				['/a/b', '.x', '/a/b/.x'],
@@ -127,6 +148,9 @@ describe('paths functions', () => {
 				['/', '.x/index', '/.x'],
 				['/a', '.x/index', '/a/.x'],
 				['/a/b', '.x/index', '/a/b/.x'],
+				['/', '.x/index/', '/.x'],
+				['/a', '.x/index/', '/a/.x'],
+				['/a/b', '.x/index/', '/a/b/.x'],
 				['/', '.x/y', '/.x/y'],
 				['/a', '.x/y', '/a/.x/y'],
 				['/a/b', '.x/y', '/a/b/.x/y'],
@@ -135,7 +159,10 @@ describe('paths functions', () => {
 				['/a/b', '.x/y/', '/a/b/.x/y'],
 				['/', '.x/y/index', '/.x/y'],
 				['/a', '.x/y/index', '/a/.x/y'],
-				['/a/b', '.x/y/index', '/a/b/.x/y']
+				['/a/b', '.x/y/index', '/a/b/.x/y'],
+				['/', '.x/y/index/', '/.x/y'],
+				['/a', '.x/y/index/', '/a/.x/y'],
+				['/a/b', '.x/y/index/', '/a/b/.x/y']
 			]);
 		});
 
@@ -147,6 +174,9 @@ describe('paths functions', () => {
 				['/', '/index', '/'],
 				['/a', '/index', '/'],
 				['/a/b', '/index', '/'],
+				['/', '/index/', '/'],
+				['/a', '/index/', '/'],
+				['/a/b', '/index/', '/'],
 				['/', '/x', '/x'],
 				['/a', '/x', '/x'],
 				['/a/b', '/x', '/x'],
@@ -158,7 +188,10 @@ describe('paths functions', () => {
 				['/a/b', '/x/', '/x'],
 				['/', '/x/index', '/x'],
 				['/a', '/x/index', '/x'],
-				['/a/b', '/x/index', '/x']
+				['/a/b', '/x/index', '/x'],
+				['/', '/x/index/', '/x'],
+				['/a', '/x/index/', '/x'],
+				['/a/b', '/x/index/', '/x']
 			]);
 		});
 	});

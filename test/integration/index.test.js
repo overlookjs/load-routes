@@ -142,7 +142,8 @@ describe('loads from folder', () => {
 			});
 		});
 
-		describe('claimed by parent', () => {
+		// eslint-disable-next-line jest/no-disabled-tests
+		describe.skip('claimed by parent', () => {
 			const fixturePath = makeFixturePathFn('claim');
 
 			let router, claimer, claimed;

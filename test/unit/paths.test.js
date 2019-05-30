@@ -7,7 +7,7 @@
 'use strict';
 
 // Imports
-const {pathName, pathParent, pathJoinRoute} = require('../../lib/paths');
+const {pathName, pathParent, pathJoinRoute, relativePathIsPeerOrAncestor} = require('../../lib/paths');
 
 // Init
 require('../support');
@@ -193,6 +193,59 @@ describe('paths functions', () => {
 				['/a', '/x/index/', '/x'],
 				['/a/b', '/x/index/', '/x']
 			]);
+		});
+	});
+
+	describe('relativePathIsPeerOrAncestor', () => {
+		describe('returns true for', () => {
+			it.each([
+				'.',
+				'..',
+				'./',
+				'../',
+				'./abc',
+				'./abc/',
+				'./abc/index',
+				'./abc/index/',
+				'../abc',
+				'../abc/',
+				'../abc/index',
+				'../abc/index/',
+				'../../abc',
+				'../../abc/',
+				'../../abc/index',
+				'../../abc/index/'
+			])('%s', (relativePath) => {
+				expect(relativePathIsPeerOrAncestor(relativePath)).toBeTrue();
+			});
+		});
+
+		describe('returns false for', () => {
+			it.each([
+				'abc',
+				'index',
+				'.abc',
+				'..abc',
+				'/',
+				'/abc',
+				'/abc/',
+				'/abc/index',
+				'/abc/index/',
+				'/abc/def',
+				'/abc/def/',
+				'/abc/def/index',
+				'/abc/def/index/',
+				'./abc/def',
+				'./abc/def/',
+				'./abc/def/index',
+				'./abc/def/index/',
+				'../abc/def',
+				'../abc/def/',
+				'../abc/def/index',
+				'../abc/def/index/'
+			])('%s', (relativePath) => {
+				expect(relativePathIsPeerOrAncestor(relativePath)).toBeFalse();
+			});
 		});
 	});
 });

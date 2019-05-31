@@ -14,7 +14,7 @@
     "url": "https://github.com/overlookjs/load-routes/issues"
   },
   "dependencies": {
-    "@overlook/route": "^0.1.0",
+    "@overlook/route": "^0.1.2",
     "core-util-is": "^1.0.2",
     "recursive-readdir": "^2.2.2"
   },

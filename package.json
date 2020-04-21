@@ -3,6 +3,9 @@
   "version": "0.0.4",
   "description": "Load Overlook routes from files",
   "main": "index.js",
+  "files": [
+    "lib/**/*.js"
+  ],
   "author": {
     "name": "Overlook Motel"
   },

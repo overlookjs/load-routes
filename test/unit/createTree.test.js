@@ -7,10 +7,10 @@
 'use strict';
 
 // Imports
-const createTree = require('../../lib/createTree');
+const createTree = require('../../lib/createTree.js');
 
 // Init
-require('../support');
+require('../support/index.js');
 
 // Tests
 

@@ -7,10 +7,10 @@
 'use strict';
 
 // Imports
-const groupPaths = require('../../lib/groupPaths');
+const groupPaths = require('../../lib/groupPaths.js');
 
 // Init
-require('../support');
+require('../support/index.js');
 
 // Tests
 

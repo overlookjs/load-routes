@@ -7,12 +7,12 @@
 
 // Modules
 const Route = require('@overlook/route'),
-	loadRoutes = require('../../index'),
+	loadRoutes = require('../../index.js'),
 	{LOAD_PATH, FILE_PATH} = loadRoutes;
 
 // Init
-require('../support');
-const {makeFixturePathFn, beforeOnce} = require('../support/utils');
+require('../support/index.js');
+const {makeFixturePathFn, beforeOnce} = require('../support/utils.js');
 
 // Tests
 

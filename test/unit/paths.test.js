@@ -7,10 +7,12 @@
 'use strict';
 
 // Imports
-const {pathName, pathParent, pathJoinRoute, relativePathIsPeerOrAncestor} = require('../../lib/paths');
+const {
+	pathName, pathParent, pathJoinRoute, relativePathIsPeerOrAncestor
+} = require('../../lib/paths.js');
 
 // Init
-require('../support');
+require('../support/index.js');
 
 // Tests
 

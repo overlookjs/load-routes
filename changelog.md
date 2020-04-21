@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.0.4
+
+Features:
+
+* Handle paths ending 'index/' as if no 'index/' suffix
+* Routes above define default route class or file extension
+* Create missing routes
+
+Bug fixes:
+
+* Handle relative paths starting with '.' correctly
+
+Refactor:
+
+* Remove `Loader` class
+
+Dependencies:
+
+* Update `@overlook/route` dependency
+
 ## 0.0.3
 
 Features:

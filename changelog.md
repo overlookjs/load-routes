@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0
+
+Breaking changes:
+
+* Use `@overlook/plugin-load`
+
+Dev:
+
+* Run tests on CI on Node v14
+
 ## 0.0.5
 
 Breaking changes:

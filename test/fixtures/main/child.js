@@ -2,6 +2,4 @@
 
 const Route = require('@overlook/route');
 
-module.exports = new Route({
-	_path: '/child'
-});
+module.exports = new Route({__filename});

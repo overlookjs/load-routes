@@ -40,7 +40,7 @@ describe('loads from folder', () => {
 			});
 
 			it('is loaded from correct file', () => {
-				expect(root._path).toBe('/');
+				expect(root.__filename).toBe(pathJoin(fixturePath, 'index.js'));
 			});
 
 			it('has name "root"', () => {
@@ -84,7 +84,7 @@ describe('loads from folder', () => {
 			});
 
 			it('is loaded from correct file', () => {
-				expect(route._path).toBe('/child');
+				expect(route.__filename).toBe(pathJoin(fixturePath, 'child.js'));
 			});
 
 			it('has name according to file name', () => {

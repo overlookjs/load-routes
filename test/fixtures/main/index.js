@@ -5,6 +5,4 @@ const Route = require('@overlook/route'),
 
 const LoadRoute = Route.extend(loadPlugin);
 
-module.exports = new LoadRoute({
-	_path: '/'
-});
+module.exports = new LoadRoute({__filename});

@@ -7,9 +7,92 @@
 
 # Load Overlook routes from files
 
+Part of the [Overlook framework](https://overlookjs.github.io/).
+
 ## Usage
 
-This module is under development and not ready for use yet.
+### Introduction
+
+[Overlook](https://overlookjs.github.io/) conceptualizes routes as a tree, with routes connected to each other in parent-child relationships.
+
+For example, `/bands/albums`'s parent is `/bands`, and in turn `/bands`'s parent is `/`. `/bands` has `/bands/albums` as it's child, along with e.g. `/bands/members`.
+
+This plugin allows defining a hierarchy of routes via another hierarchical structure - the file system.
+
+### Loading routes
+
+Use this module to load a directory containing route files.
+
+```js
+const Overlook = require('@overlook/core');
+const loadRoutes = require('@overlook/load-routes');
+
+const app = new Overlook();
+const router = await loadRoutes( __dirname + '/routes' );
+app.attachRouter( router );
+```
+
+`loadRoutes` looks for a file called `index.js` or `index.route.js` in that directory and will load it as the root route.
+
+The root route should be extended with [@overlook/plugin-load](https://www.npmjs.com/package/@overlook/plugin-load) to turn it into a "loader", and then it can define how further files should be loaded.
+
+See more details [here](https://www.npmjs.com/package/@overlook/plugin-load).
+
+### Base loader
+
+You can also provide a base loader Route class which is used to load the root. Loader should be extended with [@overlook/plugin-load](https://www.npmjs.com/package/@overlook/plugin-load).
+
+For example, if all your routes serve plain HTML files, you can just fill the routes directory with HTML files, and provide a Loader class to make routes from them.
+
+```js
+const Overlook = require('@overlook/core');
+const Route = require('@overlook/route');
+const loadRoutes = require('@overlook/load-routes');
+const loadPlugin = require('@overlook/plugin-load');
+const { IDENTIFY_ROUTE_FILE, FILES } = loadPlugin;
+const fs = require('fs').promises;
+
+class HtmlRoute extends Route {
+  // NB This is a simplification. Also need to use something
+  // like @overlook/plugin-path to route requests.
+  async handle( { res } ) {
+    const html = await fs.readFile( this[FILES].html );
+    req.res.end( html );
+  }
+}
+
+const HtmlLoadRoute = HtmlRoute.extend( loadPlugin );
+
+class HtmlIndexRoute extends HtmlLoadRoute {
+  [IDENTIFY_ROUTE_FILE]( exts, isIndex, name ) {
+    // Delegate to superior plugins
+    const identified = super[IDENTIFY_ROUTE_FILE]( exts, isIndex, name );
+    if ( identified ) return identified;
+
+    // Create a route using HtmlRoute class for HTML files
+    if ( exts.html ) {
+      if ( isIndex ) return { Class: HtmlIndexRoute };
+      return { Class: HtmlRoute };
+    }
+
+    // No HTML file found
+    return null;
+  }
+}
+
+const app = new Overlook();
+const router = await loadRoutes(
+  __dirname + '/routes',
+  { Loader: HtmlIndexRoute }
+);
+app.attachRouter( router );
+```
+
+## Versioning
+
+This module follows [semver](https://semver.org/). Breaking changes will only be made in major version updates.
+
+All active NodeJS release lines are supported (v10+ at time of writing). After a release line of NodeJS reaches end of life according to [Node's LTS schedule](https://nodejs.org/en/about/releases/), support for that version of Node may be dropped at any time, and this will not be considered a breaking change. Dropping support for a Node version will be made in a minor version update (e.g. 1.2.0 to 1.3.0). If you are using a Node version which is approaching end of life, pin your dependency of this module to patch updates only using tilde (`~`) e.g. `~1.2.3` to avoid breakages.
 
 ## Tests
 

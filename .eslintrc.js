@@ -1,4 +1,11 @@
+/* --------------------
+ * @overlook/load-routes module
+ * ESLint config
+ * ------------------*/
+
 'use strict';
+
+// Exports
 
 module.exports = {
 	extends: [

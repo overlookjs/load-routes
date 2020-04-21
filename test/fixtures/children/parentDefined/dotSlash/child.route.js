@@ -1,7 +1,7 @@
 'use strict';
 
 const Route = require('@overlook/route'),
-	{PARENT_PATH} = require('../../../../../index.js');
+	{PARENT_PATH} = require('@overlook/load-routes');
 
 module.exports = new Route({
 	_path: '/child',

@@ -7,7 +7,7 @@
 
 // Modules
 const Route = require('@overlook/route'),
-	loadRoutes = require('../../index.js'),
+	loadRoutes = require('@overlook/load-routes'),
 	{LOAD_PATH, FILE_PATH} = loadRoutes;
 
 // Init

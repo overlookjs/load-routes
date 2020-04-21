@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.0.5
+
+Breaking changes:
+
+* Drop support for Node v8
+
+Refactor:
+
+* Full paths in requires
+
+Tests:
+
+* Run tests in dev mode
+* Import from package name [refactor]
+* Simplify unhandled rejection handling
+
+Dev:
+
+* Run tests on CI on Node v13
+* Update dev dependencies
+* Simplify Jest config
+* ESLint config update
+* `.editorconfig` config
+* Replace `.npmignore` with `files` list in `package.json`
+* Remove unnecessary line from `.gitignore`
+* Travis CI config remove `sudo` key
+
+No code:
+
+* Config file header comments
+
+Docs:
+
+* Add missing changelog entry [fix]
+* Update license year
+
 ## 0.0.4
 
 Features:

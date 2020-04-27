@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1
+
+Deps:
+
+* Update dependencies
+
+Docs:
+
+* Remove references to `@overlook/core`
+
 ## 0.1.0
 
 Breaking changes:

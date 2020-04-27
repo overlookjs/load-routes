@@ -24,12 +24,8 @@ This plugin allows defining a hierarchy of routes via another hierarchical struc
 Use this module to load a directory containing route files.
 
 ```js
-const Overlook = require('@overlook/core');
 const loadRoutes = require('@overlook/load-routes');
-
-const app = new Overlook();
 const router = await loadRoutes( __dirname + '/routes' );
-app.attachRouter( router );
 ```
 
 `loadRoutes` looks for a file called `index.js` or `index.route.js` in that directory and will load it as the root route.
@@ -80,12 +76,10 @@ class HtmlIndexRoute extends HtmlLoadRoute {
   }
 }
 
-const app = new Overlook();
 const router = await loadRoutes(
   __dirname + '/routes',
   { Loader: HtmlIndexRoute }
 );
-app.attachRouter( router );
 ```
 
 ## Versioning

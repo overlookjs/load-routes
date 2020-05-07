@@ -19,7 +19,7 @@
   "dependencies": {
     "@overlook/plugin-load": "^0.1.1",
     "@overlook/route": "^0.5.1",
-    "is-it-type": "^3.1.1",
+    "is-it-type": "^4.0.0",
     "tiny-invariant": "^1.1.0"
   },
   "devDependencies": {

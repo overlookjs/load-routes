@@ -20,7 +20,7 @@
     "@overlook/plugin-load": "^0.1.2",
     "@overlook/route": "^0.6.2",
     "is-it-type": "^4.0.0",
-    "tiny-invariant": "^1.1.0"
+    "simple-invariant": "^2.0.0"
   },
   "devDependencies": {
     "@overlookmotel/eslint-config": "^7.1.2",

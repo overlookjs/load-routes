@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.2
+
+Bug fixes:
+
+* Correctly validate loaders
+
+Deps:
+
+* Update `@overlook/route` + `@overlook/plugin-load` dependencies
+* Update `is-it-type` dependency
+* Replace `tiny-invariant` with `simple-invariant`
+
+Dev:
+
+* Run coverage on CI on Node 14
+* `test-prod` NPM script
+* Simplify lint scripts
+* Update dev dependencies
+
 ## 0.1.1
 
 Deps:

@@ -53,7 +53,7 @@ class HtmlRoute extends Route {
   // like @overlook/plugin-path to route requests.
   async handle( { res } ) {
     const html = await fs.readFile( this[FILES].html );
-    req.res.end( html );
+    res.end( html );
   }
 }
 

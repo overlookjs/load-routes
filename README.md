@@ -67,8 +67,8 @@ class HtmlIndexRoute extends HtmlLoadRoute {
 
     // Create a route using HtmlRoute class for HTML files
     if ( exts.html ) {
-      if ( isIndex ) return { Class: HtmlIndexRoute };
-      return { Class: HtmlRoute };
+      if ( isIndex ) return HtmlIndexRoute;
+      return HtmlRoute;
     }
 
     // No HTML file found

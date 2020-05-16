@@ -18,11 +18,11 @@ const modules = require('./support/index.js');
 
 // Refresh Route class and load plugin symbols before each test
 let Route, loadRoutes, loadPlugin,
-	INIT_PROPS, LOAD_PATH, LOAD_DIR_PATH, PARENT_PATH, FILES, IDENTIFY_ROUTE_FILE;
+	INIT_PROPS, SRC_PATH, SRC_DIR_PATH, SRC_FILENAME, PARENT_PATH, FILES, IDENTIFY_ROUTE_FILE;
 beforeEach(() => {
 	({Route, loadRoutes, loadPlugin} = modules);
 	INIT_PROPS = Route.INIT_PROPS;
-	({LOAD_PATH, LOAD_DIR_PATH, PARENT_PATH, FILES, IDENTIFY_ROUTE_FILE} = loadPlugin);
+	({SRC_PATH, SRC_DIR_PATH, SRC_FILENAME, PARENT_PATH, FILES, IDENTIFY_ROUTE_FILE} = loadPlugin);
 });
 
 describe('loads from folder', () => {
@@ -66,12 +66,16 @@ describe('loads from folder', () => {
 				});
 			});
 
-			it('has [LOAD_PATH] set to file path', () => {
-				expect(root[LOAD_PATH]).toBe(pathJoin(fixturePath, 'index.js'));
+			it('has [SRC_PATH] set to file path', () => {
+				expect(root[SRC_PATH]).toBe(pathJoin(fixturePath, 'index.js'));
 			});
 
-			it('has [LOAD_DIR_PATH] set to dir path', () => {
-				expect(root[LOAD_DIR_PATH]).toBe(fixturePath);
+			it('has [SRC_DIR_PATH] set to dir path', () => {
+				expect(root[SRC_DIR_PATH]).toBe(fixturePath);
+			});
+
+			it('has [SRC_FILENAME] set to file name', () => {
+				expect(root[SRC_FILENAME]).toBe('index');
 			});
 		});
 
@@ -118,12 +122,16 @@ describe('loads from folder', () => {
 				});
 			});
 
-			it('has [LOAD_PATH] set to file path', () => {
-				expect(route[LOAD_PATH]).toBe(pathJoin(fixturePath, 'child.js'));
+			it('has [SRC_PATH] set to file path', () => {
+				expect(route[SRC_PATH]).toBe(pathJoin(fixturePath, 'child.js'));
 			});
 
-			it('has [LOAD_DIR_PATH] set to dir path', () => {
-				expect(route[LOAD_DIR_PATH]).toBe(fixturePath);
+			it('has [SRC_DIR_PATH] set to dir path', () => {
+				expect(route[SRC_DIR_PATH]).toBe(fixturePath);
+			});
+
+			it('has [SRC_FILENAME] set to file name', () => {
+				expect(route[SRC_FILENAME]).toBe('child');
 			});
 		});
 	});
@@ -150,8 +158,8 @@ describe('loads from folder', () => {
 					const res = super[IDENTIFY_ROUTE_FILE](exts, isIndex, name);
 					if (res) return res;
 					if (exts.html) {
-						if (isIndex) return {Class: HtmlIndexRoute};
-						return {Class: HtmlRoute};
+						if (isIndex) return HtmlIndexRoute;
+						return HtmlRoute;
 					}
 					return null;
 				}
@@ -193,12 +201,16 @@ describe('loads from folder', () => {
 				});
 			});
 
-			it('has [LOAD_PATH] set to dir path with class name', () => {
-				expect(root[LOAD_PATH]).toBe(pathJoin(fixturePath, '<HtmlIndexRoute>'));
+			it('has [SRC_PATH] undefined', () => {
+				expect(root[SRC_PATH]).toBeUndefined();
 			});
 
-			it('has [LOAD_DIR_PATH] set to dir path', () => {
-				expect(root[LOAD_DIR_PATH]).toBe(fixturePath);
+			it('has [SRC_DIR_PATH] set to dir path', () => {
+				expect(root[SRC_DIR_PATH]).toBe(fixturePath);
+			});
+
+			it('has [SRC_FILENAME] set to file name', () => {
+				expect(root[SRC_FILENAME]).toBe('index');
 			});
 		});
 
@@ -244,12 +256,16 @@ describe('loads from folder', () => {
 				});
 			});
 
-			it('has [LOAD_PATH] set to dir path with class name', () => {
-				expect(route[LOAD_PATH]).toBe(pathJoin(fixturePath, '<HtmlRoute>'));
+			it('has [SRC_PATH] undefined', () => {
+				expect(route[SRC_PATH]).toBeUndefined();
 			});
 
-			it('has [LOAD_DIR_PATH] set to dir path', () => {
-				expect(route[LOAD_DIR_PATH]).toBe(fixturePath);
+			it('has [SRC_DIR_PATH] set to dir path', () => {
+				expect(route[SRC_DIR_PATH]).toBe(fixturePath);
+			});
+
+			it('has [SRC_FILENAME] set to file name', () => {
+				expect(route[SRC_FILENAME]).toBe('child');
 			});
 		});
 	});

@@ -36,9 +36,9 @@ See more details [here](https://www.npmjs.com/package/@overlook/plugin-load).
 
 ### Base loader
 
-You can also provide a base loader Route class which is used to load the root. Loader should be extended with [@overlook/plugin-load](https://www.npmjs.com/package/@overlook/plugin-load).
+You can also provide a base loader Route which is used to load the root. The loader should be extended with [@overlook/plugin-load](https://www.npmjs.com/package/@overlook/plugin-load).
 
-For example, if all your routes serve plain HTML files, you can just fill the routes directory with HTML files, and provide a Loader class to make routes from them.
+For example, if all your routes serve plain HTML files, you can just fill the routes directory with HTML files, and provide a loader to create routes from them.
 
 ```js
 const Overlook = require('@overlook/core');
@@ -76,9 +76,10 @@ class HtmlIndexRoute extends HtmlLoadRoute {
   }
 }
 
+const loader = new HtmlIndexRoute();
 const router = await loadRoutes(
   __dirname + '/routes',
-  { Loader: HtmlIndexRoute }
+  { loader }
 );
 ```
 

@@ -26,7 +26,7 @@ beforeEach(() => {
 });
 
 describe('loads from folder', () => {
-	describe('with no Class option', () => {
+	describe('with no loader option', () => {
 		let fixturePath, root, getChild;
 		beforeEach(async () => {
 			fixturePath = getFixturePath('main');
@@ -136,9 +136,9 @@ describe('loads from folder', () => {
 		});
 	});
 
-	describe('with Loader option', () => {
+	describe('with loader option', () => {
 		let fixturePath, root, getChild, HtmlRoute, HtmlIndexRoute;
-		beforeEach(async () => {
+		beforeEach(() => {
 			HtmlRoute = class extends Route {
 				[INIT_PROPS](props) {
 					super[INIT_PROPS](props);
@@ -166,107 +166,125 @@ describe('loads from folder', () => {
 			};
 
 			fixturePath = getFixturePath('ancillary');
-			root = await loadRoutes(fixturePath, {Loader: HtmlIndexRoute});
-			getChild = createGetChild(root);
 		});
 
-		describe('root route', () => {
-			it('is a Route', () => {
-				expect(root).toBeInstanceOf(Route);
+		describe('as a Route class', () => {
+			beforeEach(async () => {
+				root = await loadRoutes(fixturePath, {loader: HtmlIndexRoute});
+				getChild = createGetChild(root);
 			});
 
-			it('has name "root"', () => {
-				expect(root.name).toBe('root');
-			});
-
-			it('has children array containing children', () => {
-				expect(root.children).toBeArrayOfSize(1);
-			});
-
-			it('is created from specified class', () => {
-				expect(root).toBeInstanceOf(HtmlRoute);
-				expect(root).toBeInstanceOf(HtmlIndexRoute);
-				expect(root.isHtmlRoute).toBeTrue();
-				expect(root.isHtmlLoaderRoute).toBeTrue();
-			});
-
-			describe('has ancillary files', () => {
-				it('file with another ext', () => {
-					expect(root[FILES].html).toBe(pathJoin(fixturePath, 'index.html'));
-				});
-
-				it('no other files', () => {
-					expect(root[FILES]).toBeObject();
-					expect(root[FILES]).toContainAllKeys(['html']);
-				});
-			});
-
-			it('has [SRC_PATH] undefined', () => {
-				expect(root[SRC_PATH]).toBeUndefined();
-			});
-
-			it('has [SRC_DIR_PATH] set to dir path', () => {
-				expect(root[SRC_DIR_PATH]).toBe(fixturePath);
-			});
-
-			it('has [SRC_FILENAME] set to file name', () => {
-				expect(root[SRC_FILENAME]).toBe('index');
-			});
+			describeTests();
 		});
 
-		describe('peer route', () => {
-			let route;
-			beforeEach(() => { route = getChild('child'); });
-
-			it('is a Route', () => {
-				expect(route).toBeInstanceOf(Route);
+		describe('as a route', () => {
+			beforeEach(async () => {
+				root = await loadRoutes(fixturePath, {loader: new HtmlIndexRoute()});
+				getChild = createGetChild(root);
 			});
 
-			it('has name according to file name', () => {
-				expect(route.name).toBe('child');
-			});
-
-			it('has root as parent', () => {
-				expect(route.parent).toBe(root);
-			});
-
-			it('has [PARENT_PATH] as ./', () => {
-				expect(route[PARENT_PATH]).toBe('./');
-			});
-
-			it('has empty children array', () => {
-				expect(route.children).toBeArrayOfSize(0);
-			});
-
-			it('is created from specified class', () => {
-				expect(route).toBeInstanceOf(HtmlRoute);
-				expect(route).not.toBeInstanceOf(HtmlIndexRoute);
-				expect(route.isHtmlRoute).toBeTrue();
-				expect(route.isHtmlLoaderRoute).toBeUndefined();
-			});
-
-			describe('has ancillary files', () => {
-				it('file with another ext', () => {
-					expect(route[FILES].html).toBe(pathJoin(fixturePath, 'child.html'));
-				});
-
-				it('no other files', () => {
-					expect(route[FILES]).toBeObject();
-					expect(route[FILES]).toContainAllKeys(['html']);
-				});
-			});
-
-			it('has [SRC_PATH] undefined', () => {
-				expect(route[SRC_PATH]).toBeUndefined();
-			});
-
-			it('has [SRC_DIR_PATH] set to dir path', () => {
-				expect(route[SRC_DIR_PATH]).toBe(fixturePath);
-			});
-
-			it('has [SRC_FILENAME] set to file name', () => {
-				expect(route[SRC_FILENAME]).toBe('child');
-			});
+			describeTests();
 		});
+
+		function describeTests() {
+			describe('root route', () => {
+				it('is a Route', () => {
+					expect(root).toBeInstanceOf(Route);
+				});
+
+				it('has name "root"', () => {
+					expect(root.name).toBe('root');
+				});
+
+				it('has children array containing children', () => {
+					expect(root.children).toBeArrayOfSize(1);
+				});
+
+				it('is created from specified class', () => {
+					expect(root).toBeInstanceOf(HtmlRoute);
+					expect(root).toBeInstanceOf(HtmlIndexRoute);
+					expect(root.isHtmlRoute).toBeTrue();
+					expect(root.isHtmlLoaderRoute).toBeTrue();
+				});
+
+				describe('has ancillary files', () => {
+					it('file with another ext', () => {
+						expect(root[FILES].html).toBe(pathJoin(fixturePath, 'index.html'));
+					});
+
+					it('no other files', () => {
+						expect(root[FILES]).toBeObject();
+						expect(root[FILES]).toContainAllKeys(['html']);
+					});
+				});
+
+				it('has [SRC_PATH] undefined', () => {
+					expect(root[SRC_PATH]).toBeUndefined();
+				});
+
+				it('has [SRC_DIR_PATH] set to dir path', () => {
+					expect(root[SRC_DIR_PATH]).toBe(fixturePath);
+				});
+
+				it('has [SRC_FILENAME] set to file name', () => {
+					expect(root[SRC_FILENAME]).toBe('index');
+				});
+			});
+
+			describe('peer route', () => {
+				let route;
+				beforeEach(() => { route = getChild('child'); });
+
+				it('is a Route', () => {
+					expect(route).toBeInstanceOf(Route);
+				});
+
+				it('has name according to file name', () => {
+					expect(route.name).toBe('child');
+				});
+
+				it('has root as parent', () => {
+					expect(route.parent).toBe(root);
+				});
+
+				it('has [PARENT_PATH] as ./', () => {
+					expect(route[PARENT_PATH]).toBe('./');
+				});
+
+				it('has empty children array', () => {
+					expect(route.children).toBeArrayOfSize(0);
+				});
+
+				it('is created from specified class', () => {
+					expect(route).toBeInstanceOf(HtmlRoute);
+					expect(route).not.toBeInstanceOf(HtmlIndexRoute);
+					expect(route.isHtmlRoute).toBeTrue();
+					expect(route.isHtmlLoaderRoute).toBeUndefined();
+				});
+
+				describe('has ancillary files', () => {
+					it('file with another ext', () => {
+						expect(route[FILES].html).toBe(pathJoin(fixturePath, 'child.html'));
+					});
+
+					it('no other files', () => {
+						expect(route[FILES]).toBeObject();
+						expect(route[FILES]).toContainAllKeys(['html']);
+					});
+				});
+
+				it('has [SRC_PATH] undefined', () => {
+					expect(route[SRC_PATH]).toBeUndefined();
+				});
+
+				it('has [SRC_DIR_PATH] set to dir path', () => {
+					expect(route[SRC_DIR_PATH]).toBe(fixturePath);
+				});
+
+				it('has [SRC_FILENAME] set to file name', () => {
+					expect(route[SRC_FILENAME]).toBe('child');
+				});
+			});
+		}
 	});
 });

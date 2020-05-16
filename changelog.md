@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.2.0
+
+Breaking changes:
+
+* `loader` option replaces `Loader`
+
+Dependencies:
+
+* Update `@overlook/plugin-load` dependency
+* Replace `simple-invariant` with `assert`
+
+Dev:
+
+* Update dev dependencies
+
+Docs:
+
+* Fix example [fix]
+
 ## 0.1.2
 
 Bug fixes:

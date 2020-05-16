@@ -1,6 +1,6 @@
 {
   "name": "@overlook/load-routes",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Load Overlook routes from files",
   "main": "index.js",
   "files": [

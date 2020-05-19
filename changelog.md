@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1
+
+Dependencies:
+
+* Update plugin dependencies
+
+Dev:
+
+* Update dev dependencies
+
 ## 0.2.0
 
 Breaking changes:

@@ -17,9 +17,9 @@
     "url": "https://github.com/overlookjs/load-routes/issues"
   },
   "dependencies": {
-    "@overlook/plugin-load": "^0.3.2",
-    "@overlook/route": "^0.6.3",
-    "is-it-type": "^4.0.0"
+    "@overlook/plugin-load": "^0.3.3",
+    "@overlook/route": "^0.6.4",
+    "is-it-type": "^5.0.0"
   },
   "devDependencies": {
     "@overlookmotel/eslint-config": "^7.1.2",

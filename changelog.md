@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.2
+
+Minor:
+
+* Drop support for Node v13
+
+Dependencies:
+
+* Update dependencies
+* Replace `assert` with `simple-invariant`
+
+Dev:
+
+* Update dev dependencies
+
 ## 0.2.1
 
 Dependencies:

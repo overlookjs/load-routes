@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0
+
+Breaking changes:
+
+* Default loader creates route with `[FILES]` object containing `File` objects
+
+Tests:
+
+* Simplify paths
+
+Dev:
+
+* Update dev dependencies
+
 ## 0.2.2
 
 Minor:

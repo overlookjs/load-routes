@@ -8,6 +8,9 @@
 // Modules
 const pathJoin = require('path').join;
 
+// Imports
+const modules = require('./index.js');
+
 // Constants
 const FIXTURES_PATH = pathJoin(__dirname, '..', 'fixtures');
 
@@ -15,7 +18,8 @@ const FIXTURES_PATH = pathJoin(__dirname, '..', 'fixtures');
 
 module.exports = {
 	getFixturePath,
-	createGetChild
+	createGetChild,
+	expectToBeFileWithPath
 };
 
 function getFixturePath(...parts) {
@@ -32,4 +36,9 @@ function getChild(route, ...names) {
 		if (!route) return undefined;
 	}
 	return route;
+}
+
+function expectToBeFileWithPath(file, path) {
+	expect(file).toBeInstanceOf(modules.loadPlugin.File);
+	expect(file).toEqual({path, content: undefined});
 }

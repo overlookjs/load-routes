@@ -9,7 +9,7 @@
 const pathJoin = require('path').join;
 
 // Imports
-const {getFixturePath, createGetChild} = require('./support/utils.js');
+const {getFixturePath, createGetChild, expectToBeFileWithPath} = require('./support/utils.js');
 
 // Init
 const modules = require('./support/index.js');
@@ -53,11 +53,11 @@ describe('loads from folder', () => {
 
 			describe('has ancillary files', () => {
 				it('route file', () => {
-					expect(root[FILES].js).toBe(pathJoin(fixturePath, 'index.js'));
+					expectToBeFileWithPath(root[FILES].js, pathJoin(fixturePath, 'index.js'));
 				});
 
 				it('file with another ext', () => {
-					expect(root[FILES].jsx).toBe(pathJoin(fixturePath, 'index.jsx'));
+					expectToBeFileWithPath(root[FILES].jsx, pathJoin(fixturePath, 'index.jsx'));
 				});
 
 				it('no other files', () => {
@@ -109,11 +109,11 @@ describe('loads from folder', () => {
 
 			describe('has ancillary files', () => {
 				it('route file', () => {
-					expect(route[FILES].js).toBe(pathJoin(fixturePath, 'child.js'));
+					expectToBeFileWithPath(route[FILES].js, pathJoin(fixturePath, 'child.js'));
 				});
 
 				it('file with another ext', () => {
-					expect(route[FILES].jsx).toBe(pathJoin(fixturePath, 'child.jsx'));
+					expectToBeFileWithPath(route[FILES].jsx, pathJoin(fixturePath, 'child.jsx'));
 				});
 
 				it('no other files', () => {
@@ -209,7 +209,7 @@ describe('loads from folder', () => {
 
 				describe('has ancillary files', () => {
 					it('file with another ext', () => {
-						expect(root[FILES].html).toBe(pathJoin(fixturePath, 'index.html'));
+						expectToBeFileWithPath(root[FILES].html, pathJoin(fixturePath, 'index.html'));
 					});
 
 					it('no other files', () => {
@@ -264,7 +264,7 @@ describe('loads from folder', () => {
 
 				describe('has ancillary files', () => {
 					it('file with another ext', () => {
-						expect(route[FILES].html).toBe(pathJoin(fixturePath, 'child.html'));
+						expectToBeFileWithPath(route[FILES].html, pathJoin(fixturePath, 'child.html'));
 					});
 
 					it('no other files', () => {

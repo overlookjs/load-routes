@@ -13,6 +13,7 @@ module.exports = {
 	],
 	rules: {
 		'import/no-unresolved': ['error', {ignore: ['^@overlook/load-routes$']}],
-		'node/no-missing-require': ['error', {allowModules: ['@overlook/load-routes']}]
+		'node/no-missing-require': ['error', {allowModules: ['@overlook/load-routes']}],
+		'jest/expect-expect': ['error', {assertFunctionNames: ['expect', 'expectToBeFileWithPath']}]
 	}
 };

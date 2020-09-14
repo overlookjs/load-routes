@@ -12,7 +12,7 @@ const pathJoin = require('path').join;
 const modules = require('./index.js');
 
 // Constants
-const FIXTURES_PATH = pathJoin(__dirname, '..', 'fixtures');
+const FIXTURES_PATH = pathJoin(__dirname, '../fixtures');
 
 // Exports
 
